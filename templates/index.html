@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>AI Shape Detector</title>
+  <meta charset="utf-8">
+
+  <!-- Latest - 25th July, 2021 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.8.0/dist/tf.min.js"></script>
+
+  <!-- custom links & script -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script>
+    const path_model = "{% static 'tensorflow/' %}";
+    var path_images  = "{% static 'images/' %}";
+  </script>
+</head>
+
+<body style="background-image:url('{% static 'images/background.jpg' %}'); background-repeat: no-repeat;background-size: 100% 100%;">
+
+  <div class="container-fluid">
+    <div class="row" style="height:100vh;">
+
+      <div id="left" class="col-sm d-flex flex-wrap justify-content-center align-content-center">
+        <img id="left_image" class="rounded-lg" src="{% static 'images/sample_shapes.jpg' %}" width="300" height="300">
+      </div>
+
+
+      <div id="middle" class="col-sm d-flex flex-wrap justify-content-center align-content-center">
+        <!-- preview form image -->
+        <div class="form-group">
+          <img id="image" class="rounded-lg" src="{% static 'images/no_image.jpg' %}" width="300" height="300">
+        </div>
+        <!-- form to submit image of shape -->
+        <form id="image_form" method="POST" name="image_submit_form"> {% csrf_token %}
+          <div class="form-group">
+            <input id="image_input" class="form-control-file rounded-lg" type="file" accept="image/png,image/jpg,image/jpeg" name="image" required> 
+          </div>
+          <div class="form-group">
+            <input id="image_form_submit" class="form-control-submit rounded-lg" type="submit" name="image_submit" value="Detect Shape">  
+          </div> 
+        </form>
+      </div>
+
+
+      <div id="right" class="col-sm d-flex flex-wrap justify-content-center align-content-center">
+        <img id="right_image" class="rounded-lg" src="{% static 'images/show_shapes.gif'%}" width="300" height="300">
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
