@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s)q2(lyo4qq_n_brfqut3jr43wnr7@!c=fr4#ne12q4%=7z2t0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ai-shape-detector.herokuapp.com']
 
 
 # Application definition
